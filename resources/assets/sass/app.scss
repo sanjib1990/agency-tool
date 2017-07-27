@@ -7,6 +7,18 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// ionicons
+@import "node_modules/ionicons/dist/scss/ionicons";
+
+// Fontawesome
+@import "node_modules/font-awesome/scss/font-awesome";
+
+// AdminLTE theme
+@import "../css/AdminLTE.css";
+
+// Icheck
+@import "../iCheck/all.css";
+
 @import "node_modules/sweetalert2/dist/sweetalert2";
 
 @import "node_modules/toastr/build/toastr";

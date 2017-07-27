@@ -6,10 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0",
         "doctrine/dbal": "^2.5",
         "guzzlehttp/guzzle": "^6.2",
+        "laravel/framework": "5.4.*",
+        "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.4.0",
         "league/fractal": "^0.16.0",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.6",

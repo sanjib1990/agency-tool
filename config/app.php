@@ -178,7 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // Third party integrations
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -232,6 +233,8 @@ return [
         // Third party integrations
         'JWTAuth'       => 'Tymon\JWTAuth\Facades\JWTAuth',
         'JWTFactory'    => 'Tymon\JWTAuth\Facades\JWTFactory',
+        'Form'          => Collective\Html\FormFacade::class,
+        'Html'          => Collective\Html\HtmlFacade::class,
 
     ],
 

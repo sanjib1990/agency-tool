@@ -1,5 +1,24 @@
 "use strict";
 
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$.validator.setDefaults({
+    debug: true,
+    highlight: function(element) {
+        errorBorder($(element))
+    },
+    unhighlight: function(element) {
+        successBorder($(element));
+    },
+    submitHandler: function(form) {
+        form.submit();
+    }
+});
+
 /**
  * Toaster config.
  */
@@ -16,6 +35,18 @@ toastr.options  = {
     "positionClass": "toast-top-right",
     "timeOut": "10000"
 };
+
+//iCheck for checkbox and radio inputs
+$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass   : 'icheckbox_square-blue'
+});
+
+//Red color scheme for iCheck
+$('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+    checkboxClass: 'icheckbox_square-red',
+    radioClass   : 'iradio_square-red'
+});
 
 /**
  * Set Cookie
@@ -150,4 +181,54 @@ function validationError(error) {
             toastr.error(value, error.responseJSON.message);
         });
     }
+}
+
+/**
+ * Toggle display of an element.
+ *
+ * @param instance
+ * @param bool
+ */
+function toggleDisplay(instance, bool = false) {
+    if (bool) {
+        return instance.hide();
+    }
+
+    return instance.show();
+}
+
+/**
+ * Make input boarder error.
+ *
+ * @param instance
+ */
+function errorBorder(instance) {
+    instance.parent(".form-group")
+        .addClass('has-error')
+        .removeClass('has-feedback')
+        .removeClass('has-success')
+}
+
+/**
+ * Make input boarder success
+ *
+ * @param instance
+ */
+function successBorder(instance) {
+    instance.parent(".form-group")
+        .removeClass('has-error')
+        .removeClass('has-feedback')
+        .addClass('has-success')
+}
+
+/**
+ * Generate v4 UUID
+ *
+ * @returns {string}
+ */
+function uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }

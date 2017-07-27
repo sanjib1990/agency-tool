@@ -1,46 +1,41 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div class="login-box">
+        <div class="login-logo">
+            <b id="form-title"></b>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            @include("auth.partials.register-form")
 
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
+            @include("auth.partials.login-form")
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+            <div class="social-auth-links text-center" style= "display: none;">
+                <p>- OR -</p>
+                <a href="#" class="btn btn-block btn-social btn-linkedin btn-flat">
+                    <i class="fa fa-linkedin"></i> Sign in using Linkedin
+                </a>
+                <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                    <i class="fa fa-google-plus"></i> Sign in using Google+
+                </a>
+            </div>
+            <!-- /.social-auth-links -->
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+            <hr>
+            <a href="{!! route('password.request') !!}" id="forgot-password" class="login_links" style= "display: none;">Forgot password</a>
+            <a href="{!! route('register') !!}" class="text-center pull-right login_links" id="register" style= "display: none;">Register</a>
+            <a href="{!! route('login') !!}" class="login" style= "display: none;">Already a Member</a>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="login-box-body forgot-password-form">
+                @include("auth.partials.forgot-password-form")
             </div>
         </div>
+        <!-- /.login-box-body -->
     </div>
-</div>
+    {!! Form::hidden('show-form', $show, ['id' => "show-form"]) !!}
+@endsection
+
+@section('scripts')
+    <script src="{!! elixir('js/auth.js') !!}"></script>
 @endsection
