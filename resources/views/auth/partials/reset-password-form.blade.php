@@ -1,32 +1,11 @@
-{!! Form::open(['route' => 'register', 'id' => 'register-form']) !!}
-<div class="form-group {{ $errors->has('fname') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::text('fname', old('fname'), [
-        'class'         => 'form-control',
-        'id'            => 'fname',
-        'placeholder'   => 'First name',
-        'required'      => true
-    ]) !!}
-    @if ($errors->has('fname'))
-        <span class="help-block">
-            <strong>{{ $errors->first('fname') }}</strong>
-        </span>
-    @endif
-</div>
-<div class="form-group {{ $errors->has('lname') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::text('lname', old('lname'), [
-        'class'         => 'form-control',
-        'id'            => 'lname',
-        'placeholder'   => 'Last name',
-        'required'      => true
-    ]) !!}
-    @if ($errors->has('lname'))
-        <span class="help-block">
-            <strong>{{ $errors->first('lname') }}</strong>
-        </span>
-    @endif
-</div>
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+{!! Form::open(['route' => 'password.request', 'id' => 'reset-password-form']) !!}
 <div class="form-group {{ $errors->has('email') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::email('email', old('email'), [
+    {!! Form::email('email', $email or old('email'), [
         'class'         => 'form-control',
         'id'            => 'email',
         'placeholder'   => 'Email',
@@ -65,14 +44,12 @@
     @endif
 </div>
 <div class="row">
-    <div class="col-md-8">
-        <a href="{!! route('login') !!}" class="login">Already a Member</a>
-    </div>
     <div class="col-md-4 pull-right">
-        {!! Form::button('Register', [
+        {!! Form::button('Reset', [
             "type"  => "submit",
             "class" => "btn btn-primary btn-block btn-flat"
         ]) !!}
     </div>
 </div>
+{!! Form::hidden('token', $token) !!}
 {!! Form::close() !!}

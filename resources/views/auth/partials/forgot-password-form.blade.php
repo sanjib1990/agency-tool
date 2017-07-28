@@ -4,7 +4,7 @@
     </div>
 @endif
 
-{!! Form::open(['route' => 'password.email', 'id' => 'forgot-password-form', "style" => "display: none;"]) !!}
+{!! Form::open(['route' => 'password.email', 'id' => 'forgot-password-form']) !!}
 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
     {!! Form::email('email', old('email'), [
         'id'            => 'email',
@@ -28,4 +28,7 @@
 </div>
 {!! Form::close() !!}
 
-<a href="{!! route('login') !!}" class="back_login" style= "display: none;">Login</a>
+<div class="text-center">
+    <p>- OR -</p>
+    <a href="{!! route('login') !!}" class="back_login btn btn-success form-control">Login</a>
+</div>
