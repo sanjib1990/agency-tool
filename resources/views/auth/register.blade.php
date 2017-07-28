@@ -10,9 +10,6 @@
             @include("auth.partials.register-form")
 
             @include("auth.partials.social-login")
-
-            <hr>
-            <a href="{!! route('login') !!}" class="login" style= "display: none;">Already a Member</a>
         </div>
         <!-- /.login-box-body -->
     </div>

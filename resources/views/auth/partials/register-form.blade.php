@@ -65,6 +65,9 @@
     @endif
 </div>
 <div class="row">
+    <div class="col-md-8">
+        <a href="{!! route('login') !!}" class="login">Already a Member</a>
+    </div>
     <div class="col-md-4 pull-right">
         {!! Form::button('Register', [
             "type"  => "submit",
