@@ -16,5 +16,4 @@
     <script type="text/javascript">
         $("#forgot-password-form").validate();
     </script>
-    <script src="{!! elixir('js/forgot-password.js') !!}"></script>
 @endsection

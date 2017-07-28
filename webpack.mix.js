@@ -26,8 +26,8 @@ mix
         'resources/assets/js/auth/register.js'
     ], 'public/js/register.js')
     .babel([
-        'resources/assets/js/auth/forgot-password.js'
-    ], 'public/js/forgot-password.js')
+        'resources/assets/js/auth/reset-password.js'
+    ], 'public/js/reset-password.js')
     .sass('resources/assets/sass/app.scss', 'public/css/app.css')
     .version();
 
