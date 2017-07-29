@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsFnameLnameUsers extends Migration
+class AddImageUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,9 @@ class AddColumnsFnameLnameUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('name', 'fname');
-            $table->string('lname')->after('id');
+            $table->boolean('active')->default(true);
+            $table->string('avatar')->nullable();
+            $table->string('password')->nullable()->change();
         });
     }
 
@@ -27,8 +28,9 @@ class AddColumnsFnameLnameUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('fname', 'name');
-            $table->dropColumn('lname');
+            $table->dropColumn('active');
+            $table->dropColumn('avatar');
+            $table->string('password')->change();
         });
     }
 }

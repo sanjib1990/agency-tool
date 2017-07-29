@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'lname', 'fname', 'email', 'password',
+        'lname', 'fname', 'email', 'password', 'active', 'avatar'
     ];
 
     /**
@@ -31,4 +32,46 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Store User information.
+     *
+     * @param array $data
+     *
+     * @return User
+     */
+    public function store(array $data)
+    {
+        $user   = $this->create([
+            'created_at'    => carbon()->now(),
+            'fname'         => $data['fname'],
+            'lname'         => $data['lname'],
+            'email'         => $data['email'],
+            'password'      => ! empty($data['password']) ? bcrypt($data['password']) : null,
+            'avatar'        => get_data($data, 'avatar')
+        ]);
+
+        event(new Registered($user));
+
+        return $user;
+    }
+
+    /**
+     * Find a user or create a user.
+     *
+     * @param array $userData
+     *
+     * @return User|mixed
+     */
+    public function findByEmailOrCreate(array $userData)
+    {
+        $user = $this->where('email', $userData['email'])->first();
+
+        if (!empty($user)) {
+            return $user;
+        }
+
+        // Create user
+        return $this->store($userData);
+    }
 }

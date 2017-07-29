@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\SocialAuthentication;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class LoginController
@@ -30,15 +32,31 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Social login.
+     *
+     * @param SocialAuthentication $socialAuth
+     *
+     * @return \App\Models\User|\Illuminate\Http\RedirectResponse|RedirectResponse
+     */
+    public function socialLogin(SocialAuthentication $socialAuth)
+    {
+        $auth = $socialAuth->execute(request());
+
+        if ($auth instanceof RedirectResponse) {
+            return $auth;
+        }
+
+        return redirect()->route('home');
     }
 }

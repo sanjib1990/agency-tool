@@ -12,7 +12,8 @@
 */
 
 Auth::routes();
-Route::get('auth/{provider}', 'Auth\LoginController@socialLogin');
+
+Route::any('auth/{provider}', 'Auth\LoginController@socialLogin')->name('social.auth');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home');
