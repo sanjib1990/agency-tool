@@ -6,6 +6,8 @@ $.ajaxSetup({
     }
 });
 
+$.widget.bridge('uibutton', $.ui.button);
+
 $.validator.setDefaults({
     debug: true,
     highlight: function(element) {

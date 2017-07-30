@@ -10,13 +10,23 @@
     <!-- Styles -->
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body hold-transition skin-blue sidebar-mini>
+    <div id="wrapper">
         {{-- Nav bar template --}}
         @include("layouts.partials.nav-bar")
 
-        {{-- Body content --}}
-        @yield('content')
+        {{-- Side Bar template--}}
+        @include("layouts.partials.side-bar")
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                @yield('content-header')
+            </section>
+            <section class="content">
+                {{-- Body content --}}
+                @yield('content')
+            </section>
+        </div>
     </div>
 
     <!-- Scripts -->

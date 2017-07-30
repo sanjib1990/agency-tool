@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'lname', 'fname', 'email', 'password', 'active', 'avatar'
+        'uuid', 'lname', 'fname', 'email', 'password', 'active', 'avatar'
     ];
 
     /**
@@ -43,6 +43,7 @@ class User extends Authenticatable
     public function store(array $data)
     {
         $user   = $this->create([
+            'uuid'          => uuid(),
             'created_at'    => carbon()->now(),
             'fname'         => $data['fname'],
             'lname'         => $data['lname'],

@@ -2,14 +2,14 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Http\Requests\Request;
+use App\Http\Requests\ApiRequest;
 
 /**
  * Class TokenRequest
  *
  * @package App\Http\Requests\Api
  */
-class TokenRequest extends Request
+class TokenRequest extends ApiRequest
 {
     /**
      * Get the validation rules that apply to the request.

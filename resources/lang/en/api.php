@@ -20,7 +20,10 @@ return [
 
     // Validations
     'validations'   => [
-        'auth'  => 'Email or password is invalid.'
+        'auth'      => 'Email or password is invalid.',
+        'uploads'   => [
+            'empty_file'    => ':attribute is required'
+        ]
     ],
 
     // JWT

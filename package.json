@@ -19,9 +19,12 @@
   "dependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
+    "bootstrap-daterangepicker": "^2.1.25",
     "font-awesome": "^4.7.0",
     "ionicons": "^3.0.0",
+    "jquery-ui": "^1.12.1",
     "jquery-validation": "^1.16.0",
+    "moment": "^2.18.1",
     "sweetalert2": "^6.6.5",
     "toastr": "^2.1.2",
     "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony"

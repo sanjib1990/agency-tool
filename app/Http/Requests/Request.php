@@ -4,8 +4,6 @@ namespace App\Http\Requests;
 
 use App\Exceptions\AuthorizationException;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Exceptions\InvalidUserInputException;
-use Illuminate\Contracts\Validation\Validator;
 
 /**
  * Class Request
@@ -20,17 +18,6 @@ abstract class Request extends FormRequest
      * @return array
      */
     abstract public function rules();
-
-    /**
-     * @param Validator $validator
-     *
-     * @return array|void
-     * @throws InvalidUserInputException
-     */
-    protected function formatErrors(Validator $validator)
-    {
-        throw new InvalidUserInputException(null, 400, null, $validator->errors());
-    }
 
     /**
      * Determine if the user is authorized to make this request.
