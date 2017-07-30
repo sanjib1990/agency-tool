@@ -9,6 +9,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+    @yield('styles')
 </head>
 <body hold-transition skin-blue sidebar-mini>
     <div id="wrapper">
@@ -28,8 +29,8 @@
             </section>
         </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ elixir('js/app.js') }}"></script>
 </body>
+<!-- Scripts -->
+<script src="{{ elixir('js/app.js') }}"></script>
+@yield('scripts')
 </html>

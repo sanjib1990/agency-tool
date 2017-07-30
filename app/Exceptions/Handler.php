@@ -92,7 +92,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof AuthenticationException && in_array('api', $exception->guards())) {
+        if ($exception instanceof AuthenticationException
+            && (in_array('api', $exception->guards())
+            || in_array('api', $request->segments())
+            || $request->ajax())) {
             return $this->handleApiErrors($request, $exception, 401);
         }
 

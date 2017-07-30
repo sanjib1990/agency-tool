@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-md-12">
             <div class="col-lg-6 col-xs-6 text-size-20">
                 Your projects
             </div>
             <div class="col-lg-6 col-xs-6">
-                <button class="btn btn-primary"><i class="fa fa-plus-square"></i> Add Project</button>
+                <a href="{!! route('project.create') !!}" class="btn btn-primary"><i class="fa fa-plus-square"></i> Add Project</a>
             </div>
         </div>
         <hr>

@@ -47,7 +47,7 @@
                                 <a href="{{ route('logout') }}"
                                    class="btn btn-default btn-flat"
                                    onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit();">
+                                   logout()">
                                     Logout
                                 </a>
 

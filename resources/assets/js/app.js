@@ -1,10 +1,16 @@
 "use strict";
 
+let apiUrl  = window.location.origin + '/api/v1';
+let completed;
+
 $.ajaxSetup({
     headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        'Additional' : jwtHeader()
     }
 });
+
+$(document).ajaxStart(function() { showLoader(); Pace.restart(); });
 
 $.widget.bridge('uibutton', $.ui.button);
 
@@ -95,14 +101,80 @@ function getCookie(cname) {
 /**
  * Get JSON header for API Call.
  *
- * @return {{Content-Type: string, Accept: string, Cookie-Id: *}}
+ * @return {{Content-Type: string, Accept: string}}
  */
 function jsonHeader() {
     return {
         "Content-Type":"application/json",
         "Accept":"application/json",
-        "Cookie-Id": getCookieId()
     };
+}
+
+/**
+ * Get Json Auth header.
+ *
+ * @return {{Content-Type, Accept, Authorization}}
+ */
+function jsonAuthHeader() {
+    let header  = jsonHeader();
+
+    $.extend(header, jwtHeader());
+
+    return header;
+}
+
+/**
+ * Get the Authorization Header.
+ *
+ * @return {{Authorization}}
+ */
+function jwtHeader() {
+    let jwt     = sessionStorage.getItem('jwt');
+
+    if (empty(jwt) || empty(jwt.split(" ")[1])) {
+        authorize();
+    }
+
+    return {
+        "Authorization": jwt
+    }
+}
+
+function logout() {
+    sessionStorage.clear();
+    $("#logout-form").submit();
+}
+
+/**
+ * Get and set the Authorization Header.
+ */
+function authorize() {
+    $.ajax({
+        url: apiUrl + '/auth/token',
+        headers: jsonHeader(),
+        success: function (data) {
+            setJwt(data.data);
+            hideLoader();
+        },
+        error: function (error) {
+            ajaxErrorLogout(error.status);
+        }
+    });
+}
+
+function ajaxErrorLogout(status) {
+    if (status > 400 && status < 422) {
+        logout();
+    }
+}
+
+/**
+ * Set Jwt in session storage.
+ *
+ * @param token
+ */
+function setJwt(token) {
+    sessionStorage.setItem('jwt', "Bearer " + token);
 }
 
 /**
@@ -114,7 +186,7 @@ function getCookieId() {
     let cookieId    = getCookie('cookie_id');
 
     if (! cookieId) {
-        cookieId    = uuid.v4();
+        cookieId    = uuid();
 
         setCookie('cookie_id', cookieId);
     }
@@ -180,6 +252,8 @@ function removeByAttr(arr, attr, value){
 function validationError(error) {
     if (error.status == 400) {
         $.each(error.responseJSON.data.validation, function (key, value) {
+            $("#"+key).focus();
+            errorBorder($("#"+key));
             toastr.error(value, error.responseJSON.message);
         });
     }

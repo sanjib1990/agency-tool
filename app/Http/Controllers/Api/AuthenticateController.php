@@ -49,4 +49,14 @@ class AuthenticateController extends Controller
     {
         return response()->jsend($this->authenticator->refreshToken(request()), trans("api.success"));
     }
+
+    /**
+     * Get JWT token.
+     *
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return response()->jsend($this->authenticator->getTokenByUser(auth()->user()), trans('api.success'));
+    }
 }

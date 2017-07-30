@@ -13,8 +13,13 @@
 
 Auth::routes();
 
-Route::any('auth/{provider}', 'Auth\LoginController@socialLogin')->name('social.auth');
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home');
+
+    Route::group(['prefix' => 'projects'], function () {
+        Route::get('/create', 'ProjectController@create')->name('project.create');
+        Route::get('/{uuid}', 'ProjectController@show')->name('project.show');
+    });
 });
+
+Route::any('auth/{provider}', 'Auth\LoginController@socialLogin')->name('social.auth');

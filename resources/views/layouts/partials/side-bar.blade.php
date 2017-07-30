@@ -13,13 +13,13 @@
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="treeview">
+            <li>
                 <a href="{!! route('home') !!}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
+            <li >
+                <a href="{!! route('project.create') !!}">
                     <i class="fa fa-plus-square"></i>
                     <span>Add Project</span>
                 </a>

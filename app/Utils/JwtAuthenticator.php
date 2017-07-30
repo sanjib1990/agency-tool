@@ -2,6 +2,7 @@
 
 namespace App\Utils;
 
+use App\Models\User;
 use Tymon\JWTAuth\JWTAuth;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -75,5 +76,17 @@ class JwtAuthenticator implements ApiAuthenticateContract
     public function validate(array $data)
     {
         // TODO: Implement validate() method.
+    }
+
+    /**
+     * Get Token from user object.
+     *
+     * @param User $user
+     *
+     * @return string
+     */
+    public function getTokenByUser(User $user)
+    {
+        return $this->auth->fromUser($user);
     }
 }

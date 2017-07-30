@@ -2,6 +2,7 @@
 
 namespace App\Contracts;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
@@ -37,4 +38,13 @@ interface ApiAuthenticateContract
      * @return mixed
      */
     public function validate(array $data);
+
+    /**
+     * Get Token from user object.
+     *
+     * @param User $user
+     *
+     * @return string
+     */
+    public function getTokenByUser(User $user);
 }
