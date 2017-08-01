@@ -47,6 +47,7 @@ mix
         'resources/assets/js/auth/reset-password.js'
     ], 'public/js/reset-password.js')
     .sass('resources/assets/sass/app.scss', 'public/css/app.css')
+    .copy('resources/assets/img/*', 'public/images/')
     .version();
 
 mix.disableNotifications();

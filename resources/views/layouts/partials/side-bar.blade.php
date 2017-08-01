@@ -4,7 +4,13 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{!! auth()->user()->avatar !!}" class="img-circle" alt="User Image">
+                <img
+                        src="{!! auth()->user()->avatar
+                                ? auth()->user()->avatar
+                                : elixir('images/no-user.png') !!}"
+                        onerror="if (this.src != '{!! elixir('images/no-user.png') !!}') this.src = '{!! elixir('images/no-user.png') !!}';"
+                        class="user-image"
+                        alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>{!! auth()->user()->fname.' '.auth()->user()->lname !!}</p>

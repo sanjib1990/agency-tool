@@ -22,17 +22,27 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{!! auth()->user()->avatar !!}" class="user-image" alt="User Image">
+                        <img
+                                src="{!! auth()->user()->avatar
+                                ? auth()->user()->avatar
+                                : elixir('images/no-user.png') !!}"
+                                onerror="if (this.src != '{!! elixir('images/no-user.png') !!}') this.src = '{!! elixir('images/no-user.png') !!}';"
+                                class="user-image"
+                                alt="User Image">
                         <span class="hidden-xs">{!! auth()->user()->fname.' '.auth()->user()->lname !!}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="{!! auth()->user()->avatar !!}" class="img-circle" alt="User Image">
-                            <p>
-                                {!! auth()->user()->fname.' '.auth()->user()->lname !!}
-                                <small>{!! carbon()->now()->diffForHumans() !!}</small>
-                            </p>
+                            <img
+                                    src="{!! auth()->user()->avatar
+                                ? auth()->user()->avatar
+                                : elixir('images/no-user.png') !!}"
+                                    onerror="if (this.src != '{!! elixir('images/no-user.png') !!}') this.src = '{!! elixir('images/no-user.png') !!}';"
+                                    class="user-image"
+                                    alt="User Image">
+                            <br>
+                            <span>{!! auth()->user()->fname.' '.auth()->user()->lname !!}</span>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
