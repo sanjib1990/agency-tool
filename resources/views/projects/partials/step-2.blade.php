@@ -67,9 +67,11 @@
 <div class="row">
     <div class="col-md-4 pull-right">
         {!! Form::button('Step 3', [
+            "id" => "requirments_btn",
             "data-status" => config('project.project_status_order')[1],
             "class" => "btn btn-primary btn-block btn-flat"
         ]) !!}
     </div>
 </div>
 {!! Form::close() !!}
+@include('layouts.partials.upload-input')

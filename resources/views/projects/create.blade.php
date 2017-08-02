@@ -15,9 +15,27 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" class="step_1" data-toggle="tab">Step 1</a></li>
-                    <li><a href="#tab_2" class="disabled step_2" area-disabled data-toggle="tab">Step 2</a></li>
-                    <li><a href="#tab_3" class="disabled step_3" data-toggle="tab">Step 3</a></li>
+                    <li class="active">
+                        <a href="#tab_1"
+                           class="project_info project_info_tab"
+                           data-toggle="tab">
+                            Project Info
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tab_2"
+                           class="disabled requirments requirments_tab"
+                           data-toggle="tab">
+                            Requirments
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tab_3"
+                           class="disabled project_progress project_progress_tab"
+                           data-toggle="tab">
+                            Progress
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -46,7 +64,6 @@
     </div>
 
     @include('layouts.partials.project-status-order')
-    @include('layouts.partials.upload-input')
 @stop
 
 @section('scripts')
@@ -62,6 +79,10 @@
                 fail: function(e, data) {
                     ajaxErrorLogout(data.jqXHR.status);
                 }
+            });
+
+            $("#project_info_btn").on('click', function () {
+                $(".requirments_tab").removeClass('disabled').trigger('click');
             });
         });
     </script>

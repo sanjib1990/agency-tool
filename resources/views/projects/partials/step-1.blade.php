@@ -1,47 +1,28 @@
 {!! Form::open(['id' => 'step-1-form']) !!}
-<div class="form-group {{ $errors->has('fname') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::text('fname', old('fname'), [
+<div class="form-group has-feedback">
+    {!! Form::text('name', null, [
         'class'         => 'form-control',
-        'id'            => 'fname',
-        'placeholder'   => 'First name',
+        'id'            => 'name',
+        'placeholder'   => 'Project name',
         'required'      => true
     ]) !!}
     <span class="error-block help-block">
         <strong class="error-message"></strong>
     </span>
 </div>
-<div class="form-group {{ $errors->has('lname') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::text('lname', old('lname'), [
+<div class="form-group has-feedback">
+    {!! Form::textarea('description', null, [
         'class'         => 'form-control',
-        'id'            => 'lname',
-        'placeholder'   => 'Last name',
+        'id'            => 'description',
+        'placeholder'   => 'Short Summary about the project',
         'required'      => true
     ]) !!}
     <span class="error-block help-block">
         <strong class="error-message"></strong>
     </span>
 </div>
-<div class="form-group {{ $errors->has('email') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::email('email', old('email'), [
-        'class'         => 'form-control',
-        'id'            => 'email',
-        'placeholder'   => 'Email',
-        'required'      => true
-    ]) !!}
-    <span class="error-block help-block">
-        <strong class="error-message"></strong>
-    </span>
-</div>
-<div class="form-group {{ $errors->has('password') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::password('password', [
-        'class'         => 'form-control',
-        'id'            => 'password',
-        'placeholder'   => 'Password',
-        'required'      => true
-    ]) !!}
-    <span class="error-block help-block">
-        <strong class="error-message"></strong>
-    </span>
+<div class="row text-center">
+    - <p class="text-size-20">Timelines</p> -
 </div>
 <div class="row">
     <div class="col-md-6">
@@ -84,6 +65,7 @@
 <div class="row">
     <div class="col-md-4 pull-right">
         {!! Form::button('Step 2', [
+            "id" => "project_info_btn",
             "data-status" => config('project.project_status_order')[0],
             "class" => "btn btn-primary btn-block btn-flat"
         ]) !!}
