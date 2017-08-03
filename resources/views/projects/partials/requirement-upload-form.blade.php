@@ -24,7 +24,7 @@
 <div class="form-group has-feedback">
     {!! Form::file('requirment_upload', [
         'class'         => 'form-control',
-        'id'            => 'title',
+        'id'            => 'upload',
         'placeholder'   => 'Requirment Title',
     ]) !!}
     <span class="error-block help-block">

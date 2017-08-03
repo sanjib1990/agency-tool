@@ -67,6 +67,27 @@
         </div>
     </div>
 
+    <script type="text/template" id="comment-template">
+        <div class="col-md-12">
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="###userImage" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>###userName</b></a> made a post.
+                        </div>
+                        <h6 class="text-muted time time-human-diff">###time</h6>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p>###comment</p>
+                </div>
+            </div>
+        </div>
+</script>
+
 @stop
 
 @section('scripts')

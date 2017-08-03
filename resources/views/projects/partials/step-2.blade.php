@@ -35,9 +35,9 @@
     <div class="requirment-list">
         <div class="row">
             <div class="col-md-1">
-                <button class="btn btn-success"><i class="fa fa-eye"></i> Edit</button>
+                <button class="btn btn-success edit-requirment" data-uuid="2"><i class="fa fa-eye"></i> Edit</button>
             </div>
-            <div class="text-center col-md-3 requirment-title-1 crop">
+            <div class="text-center col-md-3 requirment-title-2 crop">
                 Requirment Title 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -45,7 +45,7 @@
                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </div>
-            <div class="col-md-4 text-center requirment-desc-1 crop">
+            <div class="col-md-4 text-center requirment-desc-2 crop">
                 Requirment Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -58,14 +58,14 @@
                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </div>
-            <div class="col-md-4 text-center requirment-url-1">
+            <div class="col-md-4 text-center requirment-url-2">
                 Requirment Url
             </div>
         </div>
         <hr>
         <div class="row">
             <div class="col-md-1">
-                <button class="btn btn-success"><i class="fa fa-eye"></i> Edit</button>
+                <button class="btn btn-success edit-requirment" data-uuid="1"><i class="fa fa-eye"></i> Edit</button>
             </div>
             <div class="text-center col-md-3 requirment-title-1 crop">
                 Requirment Title 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -97,7 +97,7 @@
 
 <div class="col-md-12">
     <div class="pull-right">
-        {!! Form::button('Next >>', [
+        {!! Form::button('Next', [
             "id"                    => "requirments_next_btn",
             "data-status"           => 'REQUIRMENT_SUBMITTED',
             "class"                 => "btn btn-primary btn-block",

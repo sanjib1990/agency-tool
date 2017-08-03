@@ -28,6 +28,44 @@ $.validator.setDefaults({
 });
 
 /**
+ * Convert time to human readable format.
+ *
+ * @param time
+ * @returns {boolean|string|string|string|string|string}
+ */
+function prettyDate(time){
+    d = new Date();
+    let date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")),
+        diff = ((d.getTime() + (d.getTimezoneOffset()*60000) - date.getTime()) / 1000),
+        day_diff = Math.floor(diff / 86400);
+    if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
+        return;
+
+    return day_diff === 0 && (
+        diff < 60 && "just now" ||
+        diff < 120 && "1 min ago" ||
+        diff < 3600 && Math.floor( diff / 60 ) + " mins ago" ||
+        diff < 7200 && "1 hour ago" ||
+        diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
+        day_diff === 1 && "Yesterday" ||
+        day_diff < 7 && day_diff + " days ago" ||
+        day_diff < 31 && Math.ceil( day_diff / 7 ) + " week ago";
+}
+
+// If jQuery is included in the page, adds a jQuery plugin to handle it as well
+if ( typeof jQuery !== "undefined" )
+    jQuery.fn.prettyDate = function(){
+        return this.each(function(){
+            let $this = jQuery(this),
+                date = prettyDate($this.text());
+            if ( date )
+                $this.text( date );
+        });
+    };
+
+$(".time-human-diff").prettyDate();
+
+/**
  * Toaster config.
  */
 toastr.options  = {
@@ -167,8 +205,12 @@ function authorize() {
 }
 
 function ajaxErrorLogout(status) {
+    if (status > 401) {
+        return authorize();
+    }
+
     if (status > 400 && status < 422) {
-        logout();
+        return logout();
     }
 }
 
@@ -311,4 +353,19 @@ function uuid() {
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
+}
+
+/**
+ * Templating.
+ *
+ * @param html
+ * @param params
+ * @returns {*}
+ */
+function formTemplate(html, params) {
+    $.each(params, function (key, value) {
+        html = html.replace("###"+key, value);
+    });
+
+    return html;
 }

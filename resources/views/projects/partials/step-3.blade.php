@@ -10,7 +10,10 @@
         <li>
             <i class="fa fa-exclamation bg-red-active"></i>
             <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                <span class="time">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="time-human-diff">2017-08-03T09:28:22.751Z</span>
+                </span>
                 <h3 class="timeline-header">Assign to Development Team</h3>
                 <div class="col-md-12 timeline-body assigned_dev">
                     No Development team assigned yet.
@@ -42,9 +45,17 @@
         <li>
             <i class="fa fa-clock-o bg-green"></i>
             <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                <span class="time">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="time-human-diff">2017-08-03T09:28:22.751Z</span>
+                </span>
                 <h3 class="timeline-header">Client - Requirment Sign off</h3>
-                <div class="timeline-body no-border">Requirment signed off By Client</div>
+                <div class="timeline-body no-border">
+                    Requirment To Signed Off by Client
+                    <button class="btn btn-success btn-flat btn-xs client_sign_off_btn">
+                        Client Sign Off
+                    </button>
+                </div>
                 <div class="timeline-footer">
                     @include("projects.partials.comment_section", [
                         'for'   => 'client_sign_off'
@@ -58,12 +69,20 @@
             3 Jan. 2014
           </span>
         </li>
-        <li>
+        <li class="">
             <i class="fa fa-check bg-green"></i>
             <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                <span class="time">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="time-human-diff">2017-08-03T09:28:22.751Z</span>
+                </span>
                 <h3 class="timeline-header">Dev - Requirment sign Off</h3>
-                <div class="timeline-body no-border">Requirment signed off By Dev</div>
+                <div class="timeline-body no-border">
+                    Requirment signed off By Dev
+                    <button class="btn btn-success btn-flat btn-xs dev_sign_off_btn">
+                        Developer Sign Off
+                    </button>
+                </div>
                 <div class="timeline-footer">
                     @include("projects.partials.comment_section", [
                         'for'   => 'dev_sign_off'
@@ -80,9 +99,17 @@
         <li>
             <i class="fa fa-check bg-green"></i>
             <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                <span class="time">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="time-human-diff">2017-08-03T09:28:22.751Z</span>
+                </span>
                 <h3 class="timeline-header">Requirment Freezed</h3>
-                <div class="timeline-body no-border">Requirment freezed by Mr. Frank</div>
+                <div class="timeline-body no-border">
+                    Requirment freezed by Mr. Frank
+                    <button class="btn btn-success btn-flat btn-xs requirement_freeze_btn">
+                        Freeze Requirement
+                    </button>
+                </div>
                 <div class="timeline-footer">
                     @include("projects.partials.comment_section", [
                         'for'   => 'requirment_freezed'
@@ -101,12 +128,18 @@
         <li>
             <i class="fa fa-check bg-green"></i>
             <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+                <span class="time">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="time-human-diff">2017-08-03T09:28:22.751Z</span>
+                </span>
                 <h3 class="timeline-header">Development Started</h3>
                 <div class="timeline-body">
                     Take me to your leader!
                     Switzerland is small and neutral!
                     We are more like Germany, ambitious and misunderstood!
+                    <button class="btn btn-success btn-flat btn-xs dev_start_btn">
+                        Start Development
+                    </button>
                 </div>
                 <div class="timeline-footer">
                     @include("projects.partials.comment_section", [
@@ -123,9 +156,17 @@
         <li>
             <i class="fa fa-check bg-green"></i>
             <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                <span class="time">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="time-human-diff">2017-08-03T09:28:22.751Z</span>
+                </span>
                 <h3 class="timeline-header">QA Testing</h3>
-                <div class="timeline-body no-border">Given for QA</div>
+                <div class="timeline-body no-border">
+                    Given for QA
+                    <button class="btn btn-success btn-flat btn-xs give_btn">
+                        Developer Sign Off
+                    </button>
+                </div>
                 <div class="timeline-footer">
                     @include("projects.partials.comment_section", [
                         'for'   => 'given_for_qa'
@@ -141,7 +182,10 @@
         <li>
             <i class="fa fa-check bg-green"></i>
             <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                <span class="time">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="time-human-diff">2017-08-03T09:28:22.751Z</span>
+                </span>
                 <h3 class="timeline-header">Deploy</h3>
                 <div class="timeline-body no-border">Deploy on a server</div>
                 <div class="timeline-footer">

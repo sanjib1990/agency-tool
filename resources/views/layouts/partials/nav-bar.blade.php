@@ -42,7 +42,7 @@
                                     class="user-image"
                                     alt="User Image">
                             <br>
-                            <span>{!! auth()->user()->fname.' '.auth()->user()->lname !!}</span>
+                            <span class="user-name">{!! auth()->user()->fname.' '.auth()->user()->lname !!}</span>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">

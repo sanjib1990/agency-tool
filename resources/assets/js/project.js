@@ -28,13 +28,15 @@ $(function() {
     });
 
     $(".tab_click").on('click', function () {
-        if ($(this).attr('id') == 'requirments_tab') {
-            $(".tab-content").css({position:"absolute"});
+        let tabContent  = $(".tab-content");
+
+        if ($(this).attr('id') === 'requirments_tab') {
+            tabContent.css({position:"absolute"});
 
             return true;
         }
 
-        $(".tab-content").css({position:"inherit"});
+        tabContent.css({position:"inherit"});
     });
 
     $(".search_developer").easyAutocomplete({
@@ -47,6 +49,16 @@ $(function() {
     });
     $(".remove_dev").on('click', function () {
         $(".assigned_dev").html("No Development team assigned yet.");
+    });
+    $(".add_comment").on('click', function () {
+        comment($(this).data('identifier'));
+    });
+    $(".edit-requirment").on('click', function () {
+        let uuid   = $(this).data('uuid');
+
+        $("#title").val($(".requirment-title-"+uuid).text().trim());
+        $("#requirment_desc").val($(".requirment-desc-"+uuid).text().trim());
+        $("#requirement-modal").modal('show');
     });
 });
 
@@ -62,6 +74,7 @@ function fetchProjectStatuses() {
             projectStatuses = result.data;
         },
         error: function (error) {
+            ajaxErrorLogout(error.status);
             hideLoader();
         }
     })
@@ -78,4 +91,47 @@ function makeProgress(status, value = null) {
 
     $(".progress-bar").attr('aria-valuenow', value).css({width: value + '%'});
     $("#percentage_completed").html(value);
+}
+
+/**
+ * Comment.
+ *
+ * @param forIdentifier
+ */
+function comment(forIdentifier = null) {
+    swal({
+        title: 'Comment',
+        input: 'text',
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        showLoaderOnConfirm: true,
+        preConfirm: function (text) {
+            return new Promise(function (resolve, reject) {
+                if (empty(text)) {
+                    reject('Please enter a comment.')
+                } else {
+                    resolve()
+                }
+            })
+        },
+        allowOutsideClick: false
+    }).then(function (text) {
+        let html        = $("#comment-template").html();
+        let userImage   = $(".user-image").attr('src');
+        let userName    = $(".user-name").text();
+        let date        = (new Date).toISOString();
+
+        $("."+forIdentifier+"-comment-list").prepend(formTemplate(html, {
+            userImage: userImage,
+            userName: userName,
+            time: date,
+            comment: text
+        }));
+        $(".time-human-diff").prettyDate();
+
+        swal({
+            type: 'success',
+            title: 'Comment Submitted Successfully!'
+        });
+    })
 }
