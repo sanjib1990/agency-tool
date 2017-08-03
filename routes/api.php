@@ -19,9 +19,11 @@ Route::group([
     });
 
     Route::group([
-        'middleware'    => ['jwt.auth'],
+        'middleware'    => ['jwt.auth', 'header'],
         'namespace'     => 'Api'
     ], function () {
+        Route::get('project/statuses', 'ProjectController@statuses')->name('project.statuses');
+
         Route::get('test', function () {
             return response()->jsend(["Hi there"]);
         });

@@ -16,20 +16,18 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3>150</h3>
-
-                    <p>New Orders</p>
+                    <p>Project 1</p>
                     <span class="progress-description">
-                        70% Increase in 30 Days
+                        <span class="percentage_completed_1">0</span>% Completed
                     </span>
                     <div class="progress">
-                        <div class="progress-bar" style="width: 70%"></div>
+                        <div class="progress-bar progress_bar_1" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="icon">
                     <i class="fa fa-folder-open"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="{!! route('project.show', ['uuid' => 1]) !!}" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -39,20 +37,18 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3>150</h3>
-
-                    <p>New Orders</p>
+                    <p>Project 2</p>
                     <span class="progress-description">
-                        70% Increase in 30 Days
+                        <span class="percentage_completed_2">0</span>% Completed
                     </span>
                     <div class="progress">
-                        <div class="progress-bar" style="width: 70%"></div>
+                        <div class="progress-bar progress_bar_2" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="icon">
                     <i class="fa fa-folder-open"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="{!! route('project.show', ['uuid' => 1]) !!}" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -62,24 +58,26 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3>150</h3>
-
-                    <p>New Orders</p>
+                    <p>Project 3</p>
                     <span class="progress-description">
-                        70% Increase in 30 Days
+                        <span class="percentage_completed_3">0</span>% Completed
                     </span>
                     <div class="progress">
-                        <div class="progress-bar" style="width: 70%"></div>
+                        <div class="progress-bar progress_bar_3" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="icon">
                     <i class="fa fa-folder-open"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="{!! route('project.show', ['uuid' => 1]) !!}" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
     </div>
 </div>
-@endsection
+@stop
+
+@section('scripts')
+    <script type="text/javascript" src="{!! elixir('js/home.js') !!}"></script>
+@stop

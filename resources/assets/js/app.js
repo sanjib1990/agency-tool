@@ -56,6 +56,10 @@ $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck(
     radioClass   : 'iradio_square-red'
 });
 
+$('.modal').on('hidden.bs.modal', function () {
+    $(this).find('form').trigger('reset');
+})
+
 /**
  * Set Cookie
  *

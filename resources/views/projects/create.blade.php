@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
+    <link rel="stylesheet" href="{!! elixir('css/project.css') !!}">
 @stop
 
 @section('content-header')
@@ -17,21 +18,24 @@
                 <ul class="nav nav-tabs">
                     <li class="active">
                         <a href="#tab_1"
-                           class="project_info project_info_tab"
+                           class="tab_click project_info project_info_tab"
+                           id="project_info_tab"
                            data-toggle="tab">
                             Project Info
                         </a>
                     </li>
                     <li>
                         <a href="#tab_2"
-                           class="disabled requirments requirments_tab"
+                           class="tab_click {!! @$show ? '' : 'disabled' !!} requirments requirments_tab"
+                           id="requirments_tab"
                            data-toggle="tab">
                             Requirments
                         </a>
                     </li>
                     <li>
                         <a href="#tab_3"
-                           class="disabled project_progress project_progress_tab"
+                           class="tab_click {!! @$show ? '' : 'disabled' !!} project_progress project_progress_tab"
+                           id="project_progress_tab"
                            data-toggle="tab">
                             Progress
                         </a>
@@ -45,7 +49,7 @@
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="tab_2">
-                        <div class="steps">
+                        <div class="">
                             @include('projects.partials.step-2')
                         </div>
                     </div>
@@ -63,27 +67,8 @@
         </div>
     </div>
 
-    @include('layouts.partials.project-status-order')
 @stop
 
 @section('scripts')
-    <script>
-        $(function() {
-            $('#file_upload').fileupload({
-                dataType: 'json',
-                headers: jwtHeader(),
-                done: function (e, data) {
-                    console.log(data.result);
-                    hideLoader();
-                },
-                fail: function(e, data) {
-                    ajaxErrorLogout(data.jqXHR.status);
-                }
-            });
-
-            $("#project_info_btn").on('click', function () {
-                $(".requirments_tab").removeClass('disabled').trigger('click');
-            });
-        });
-    </script>
+    <script type="text/javascript" src="{!! elixir('js/project.js') !!}"></script>
 @stop

@@ -6,7 +6,7 @@ class ProjectController extends Controller
 {
     public function show()
     {
-        return view('projects.show');
+        return view('projects.create', ['show' => true]);
     }
 
     public function create()

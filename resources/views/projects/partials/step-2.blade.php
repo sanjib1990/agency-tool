@@ -1,77 +1,108 @@
-{!! Form::open(['id' => 'step-2-form']) !!}
-<div class="form-group {{ $errors->has('fname') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::text('fname', old('fname'), [
-        'class'         => 'form-control',
-        'id'            => 'fname',
-        'placeholder'   => 'First name',
-        'required'      => true
-    ]) !!}
-    @if ($errors->has('fname'))
-        <span class="help-block">
-            <strong>{{ $errors->first('fname') }}</strong>
-        </span>
-    @endif
-</div>
-<div class="form-group {{ $errors->has('lname') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::text('lname', old('lname'), [
-        'class'         => 'form-control',
-        'id'            => 'lname',
-        'placeholder'   => 'Last name',
-        'required'      => true
-    ]) !!}
-    @if ($errors->has('lname'))
-        <span class="help-block">
-            <strong>{{ $errors->first('lname') }}</strong>
-        </span>
-    @endif
-</div>
-<div class="form-group {{ $errors->has('email') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::email('email', old('email'), [
-        'class'         => 'form-control',
-        'id'            => 'email',
-        'placeholder'   => 'Email',
-        'required'      => true
-    ]) !!}
-    @if ($errors->has('email'))
-        <span class="help-block">
-            <strong>{{ $errors->first('email') }}</strong>
-        </span>
-    @endif
-</div>
-<div class="form-group {{ $errors->has('password') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::password('password', [
-        'class'         => 'form-control',
-        'id'            => 'password',
-        'placeholder'   => 'Password',
-        'required'      => true
-    ]) !!}
-    @if ($errors->has('password'))
-        <span class="help-block">
-            <strong>{{ $errors->first('password') }}</strong>
-        </span>
-    @endif
-</div>
-<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : 'has-feedback' }}">
-    {!! Form::password('password_confirmation', [
-        'class'         => 'form-control',
-        'id'            => 'password_confirmation',
-        'placeholder'   => 'Confirm Password',
-        'required'      => true
-    ]) !!}
-    @if ($errors->has('password_confirmation'))
-        <span class="help-block">
-            <strong>{{ $errors->first('password_confirmation') }}</strong>
-        </span>
-    @endif
-</div>
-<div class="row">
-    <div class="col-md-4 pull-right">
-        {!! Form::button('Step 3', [
-            "id" => "requirments_btn",
-            "data-status" => config('project.project_status_order')[1],
-            "class" => "btn btn-primary btn-block btn-flat"
+<div class="col-md-12">
+    <div class="pull-right">
+        {!! Form::button('Add Requirment', [
+            "id"                    => "requirments_btn",
+            "data-toggle"           => "modal",
+            "data-target"           => "#requirement-modal",
+            "class"                 => "btn btn-primary btn-block",
+            "data-controls-modal"   => "#requirement-modal",
+            "data-backdrop"         => "static",
+            "data-keyboard"         => "false"
         ]) !!}
     </div>
 </div>
-{!! Form::close() !!}
-@include('layouts.partials.upload-input')
+<br>
+<hr>
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-1">
+                #Edit
+            </div>
+            <div class="text-center col-md-3 bold">
+                Title
+            </div>
+            <div class="col-md-4 text-center bold">
+                Description
+            </div>
+            <div class="col-md-4 text-center bold">
+                Image
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="requirment-list">
+        <div class="row">
+            <div class="col-md-1">
+                <button class="btn btn-success"><i class="fa fa-eye"></i> Edit</button>
+            </div>
+            <div class="text-center col-md-3 requirment-title-1 crop">
+                Requirment Title 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+            <div class="col-md-4 text-center requirment-desc-1 crop">
+                Requirment Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+            <div class="col-md-4 text-center requirment-url-1">
+                Requirment Url
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-1">
+                <button class="btn btn-success"><i class="fa fa-eye"></i> Edit</button>
+            </div>
+            <div class="text-center col-md-3 requirment-title-1 crop">
+                Requirment Title 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+            <div class="col-md-4 text-center requirment-desc-1 crop">
+                Requirment Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+            <div class="col-md-4 text-center requirment-url-1">
+                Requirment Url
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="pull-right">
+        {!! Form::button('Next >>', [
+            "id"                    => "requirments_next_btn",
+            "data-status"           => 'REQUIRMENT_SUBMITTED',
+            "class"                 => "btn btn-primary btn-block",
+        ]) !!}
+    </div>
+</div>
+
+@include("projects.partials.requirement-modal")

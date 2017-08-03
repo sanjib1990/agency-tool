@@ -46,6 +46,23 @@ mix
     .babel([
         'resources/assets/js/auth/reset-password.js'
     ], 'public/js/reset-password.js')
+    .babel([
+        'node_modules/easy-autocomplete/dist/jquery.easy-autocomplete.js'
+    ], 'public/js/jquery.easy-autocomplete.js')
+    .styles([
+        'node_modules/easy-autocomplete/dist/easy-autocomplete.css'
+    ], 'public/css/project.css')
+    .babel([
+        'node_modules/easy-autocomplete/dist/jquery.easy-autocomplete.js',
+        'resources/assets/js/project.js'
+    ], 'public/js/project.js')
+    .babel([
+        'resources/assets/js/home.js'
+    ], 'public/js/home.js')
+    .styles([
+        'node_modules/easy-autocomplete/dist/easy-autocomplete.css',
+        'resources/assets/css/project.css'
+    ], 'public/css/project.css')
     .sass('resources/assets/sass/app.scss', 'public/css/app.css')
     .copy('resources/assets/img/*', 'public/images/')
     .version();

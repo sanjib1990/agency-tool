@@ -66,7 +66,7 @@
     <div class="col-md-4 pull-right">
         {!! Form::button('Step 2', [
             "id" => "project_info_btn",
-            "data-status" => config('project.project_status_order')[0],
+            "data-status" => 'INFO_SUBMITTED',
             "class" => "btn btn-primary btn-block btn-flat"
         ]) !!}
     </div>
