@@ -27,14 +27,16 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group has-feedback">
+            {!! Form::label('start_date', 'Start Date') !!}
             <div class="input-group date">
                 <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </div>
-                {!! Form::date('start_date', null, [
+                {!! Form::date('start_date', carbon()->now()->format('Y-m-d'), [
                     'class'         => 'form-control',
                     'id'            => 'start_date',
                     'placeholder'   => 'Start Date',
+                    'min'           => carbon()->now()->format('Y-m-d'),
                     'required'      => true,
                 ]) !!}
                 <span class="error-block help-block">
@@ -45,14 +47,16 @@
     </div>
     <div class="col-md-6">
         <div class="form-group has-feedback">
+            {!! Form::label('end_date', 'End Date') !!}
             <div class="input-group date">
                 <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </div>
-                {!! Form::date('end_date', null, [
+                {!! Form::date('end_date', carbon()->now()->addMonths(1)->format('Y-m-d'), [
                     'class'         => 'form-control',
                     'id'            => 'end_date',
                     'placeholder'   => 'End Date',
+                    'min'           => carbon()->now()->addMonths(1)->format('Y-m-d'),
                     'required'      => true
                 ]) !!}
                 <span class="error-block help-block">
@@ -64,7 +68,7 @@
 </div>
 <div class="row">
     <div class="col-md-4 pull-right">
-        {!! Form::button('Step 2', [
+        {!! Form::button('Next', [
             "id" => "project_info_btn",
             "data-status" => 'INFO_SUBMITTED',
             "class" => "btn btn-primary btn-block btn-flat"

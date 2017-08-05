@@ -19,7 +19,12 @@ class CreateProjects extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('description');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
+            $table->integer('stage_id')->unsigned();
+            $table->boolean('active')->default(true);
             $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
         });
     }

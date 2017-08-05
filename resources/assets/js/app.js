@@ -171,9 +171,9 @@ function jsonAuthHeader() {
  * @return {{Authorization}}
  */
 function jwtHeader() {
-    let jwt     = sessionStorage.getItem('jwt');
+    let jwt     = localStorage.getItem('jwt');
 
-    if (empty(jwt) || empty(jwt.split(" ")[1])) {
+    if (empty(jwt) || empty(jwt.split(" ")[1]) || jwtExpired()) {
         authorize();
     }
 
@@ -182,8 +182,24 @@ function jwtHeader() {
     }
 }
 
+/**
+ * Check if jwt is expired.
+ *
+ * @return {boolean}
+ */
+function jwtExpired() {
+    if (empty(localStorage.getItem('jwt')) || empty(localStorage.getItem('jwt_created_at'))) {
+        return false;
+    }
+
+    let now         = Math.floor(Date.now() / 1000);
+    let createdAt   = localStorage.getItem('jwt_created_at');
+
+    return !((now - createdAt) >= 60);
+}
+
 function logout() {
-    sessionStorage.clear();
+    localStorage.clear();
     $("#logout-form").submit();
 }
 
@@ -205,7 +221,7 @@ function authorize() {
 }
 
 function ajaxErrorLogout(status) {
-    if (status > 401) {
+    if (status === 401) {
         return authorize();
     }
 
@@ -220,7 +236,8 @@ function ajaxErrorLogout(status) {
  * @param token
  */
 function setJwt(token) {
-    sessionStorage.setItem('jwt', "Bearer " + token);
+    localStorage.setItem('jwt', "Bearer " + token);
+    localStorage.setItem('jwt_created_at', Math.floor(Date.now() / 1000));
 }
 
 /**
@@ -364,7 +381,9 @@ function uuid() {
  */
 function formTemplate(html, params) {
     $.each(params, function (key, value) {
-        html = html.replace("###"+key, value);
+        while (html.indexOf("###" + key) >= 0) {
+            html = html.replace("###" + key, value);
+        }
     });
 
     return html;

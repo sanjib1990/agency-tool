@@ -23,8 +23,8 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img
-                                src="{!! auth()->user()->avatar
-                                ? auth()->user()->avatar
+                                src="{!! auth()->user()->profile->avatar
+                                ? auth()->user()->profile->avatar
                                 : elixir('images/no-user.png') !!}"
                                 onerror="if (this.src != '{!! elixir('images/no-user.png') !!}') this.src = '{!! elixir('images/no-user.png') !!}';"
                                 class="user-image"
@@ -35,8 +35,8 @@
                         <!-- User image -->
                         <li class="user-header">
                             <img
-                                    src="{!! auth()->user()->avatar
-                                ? auth()->user()->avatar
+                                    src="{!! auth()->user()->profile->avatar
+                                ? auth()->user()->profile->avatar
                                 : elixir('images/no-user.png') !!}"
                                     onerror="if (this.src != '{!! elixir('images/no-user.png') !!}') this.src = '{!! elixir('images/no-user.png') !!}';"
                                     class="user-image"

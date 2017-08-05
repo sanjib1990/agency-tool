@@ -23,13 +23,11 @@ Route::group([
         'namespace'     => 'Api'
     ], function () {
         Route::get('project/statuses', 'ProjectController@statuses')->name('project.statuses');
-
-        Route::get('test', function () {
-            return response()->jsend(["Hi there"]);
-        });
+        Route::get('projects', 'ProjectController@get')->name('projects');
     });
 });
 
+// Upload Api
 Route::group([
     'prefix'        => 'v1',
     'middleware'    => ['jwt.auth'],

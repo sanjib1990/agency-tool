@@ -5,7 +5,7 @@ let projectStatuses = null;
 // Get all project statuses
 fetchProjectStatuses();
 
-$(function() {
+$(() => {
     $('#file_upload').fileupload({
         dataType: 'json',
         headers: jwtHeader(),
@@ -17,12 +17,14 @@ $(function() {
             ajaxErrorLogout(data.jqXHR.status);
         }
     });
-
     $("#project_info_btn").on('click', function () {
+        makeProgress($(this).data('status'));
         $(".requirments_tab").removeClass('disabled').trigger('click');
         $(".tab-content").css({position:"absolute"});
     });
     $("#requirments_next_btn").on('click', function () {
+        makeProgress($(this).data('status'));
+
         $(".tab-content").css({position:"inherit"});
         $(".project_progress_tab").removeClass('disabled').trigger('click');
     });
@@ -44,21 +46,35 @@ $(function() {
     });
 
     $(".dev_select").on('click', function () {
+        makeProgress($(this).data('status'));
+
         $(".assigned_dev").html($(".search_developer").val());
         $("#assign-dev-modal").modal("hide");
     });
     $(".remove_dev").on('click', function () {
+        makeProgress($(this).data('status'));
+
         $(".assigned_dev").html("No Development team assigned yet.");
     });
-    $(".add_comment").on('click', function () {
+    $(".add_comment").on('click', () => {
         comment($(this).data('identifier'));
     });
-    $(".edit-requirment").on('click', function () {
+    $(".edit-requirment").on('click', () => {
         let uuid   = $(this).data('uuid');
 
         $("#title").val($(".requirment-title-"+uuid).text().trim());
         $("#requirment_desc").val($(".requirment-desc-"+uuid).text().trim());
         $("#requirement-modal").modal('show');
+    });
+
+    $(".client_sign_off_btn," +
+        ".dev_sign_off_btn," +
+        ".requirement_freeze_btn," +
+        ".dev_start_btn," +
+        ".dev_start_btn," +
+        ".given_to_qa_btn," +
+        ".deployed_btn").click(function () {
+        makeProgress($(this).data('status'));
     });
 });
 
@@ -69,11 +85,11 @@ function fetchProjectStatuses() {
     $.ajax({
         url: apiUrl + '/project/statuses',
         headers: jsonAuthHeader(),
-        success: function (result) {
+        success: result => {
             hideLoader();
             projectStatuses = result.data;
         },
-        error: function (error) {
+        error: error => {
             ajaxErrorLogout(error.status);
             hideLoader();
         }
@@ -106,7 +122,7 @@ function comment(forIdentifier = null) {
         confirmButtonText: 'Submit',
         showLoaderOnConfirm: true,
         preConfirm: function (text) {
-            return new Promise(function (resolve, reject) {
+            return new Promise((resolve, reject) => {
                 if (empty(text)) {
                     reject('Please enter a comment.')
                 } else {
@@ -115,7 +131,7 @@ function comment(forIdentifier = null) {
             })
         },
         allowOutsideClick: false
-    }).then(function (text) {
+    }).then(text => {
         let html        = $("#comment-template").html();
         let userImage   = $(".user-image").attr('src');
         let userName    = $(".user-name").text();

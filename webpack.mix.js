@@ -67,4 +67,4 @@ mix
     .copy('resources/assets/img/*', 'public/images/')
     .version();
 
-// mix.disableNotifications();
+mix.disableNotifications();

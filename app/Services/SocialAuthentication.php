@@ -130,10 +130,11 @@ class SocialAuthentication
     protected function getLinkedinData($data)
     {
         return [
-            'fname'     => get_data($data, 'user.firstName'),
-            'lname'     => get_data($data, 'user.lastName'),
-            'email'     => get_data($data, 'email'),
-            'avatar'    => get_data($data, 'avatar')
+            'fname'             => get_data($data, 'user.firstName'),
+            'lname'             => get_data($data, 'user.lastName'),
+            'email'             => get_data($data, 'email'),
+            'avatar'            => get_data($data, 'avatar'),
+            'login_provider'    => request()->provider
         ];
     }
 
@@ -147,10 +148,11 @@ class SocialAuthentication
     protected function getGoogleData($data)
     {
         return [
-            'fname'     => get_data($data, 'user.name.givenName'),
-            'lname'     => get_data($data, 'user.name.familyName'),
-            'email'     => get_data($data, 'email'),
-            'avatar'    => get_data($data, 'avatar')
+            'fname'             => get_data($data, 'user.name.givenName'),
+            'lname'             => get_data($data, 'user.name.familyName'),
+            'email'             => get_data($data, 'email'),
+            'avatar'            => get_data($data, 'avatar'),
+            'login_provider'    => request()->provider
         ];
     }
 }

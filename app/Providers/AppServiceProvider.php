@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Utils\Factory;
+use League\Fractal\Manager;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Contracts\Routing\ResponseFactory;

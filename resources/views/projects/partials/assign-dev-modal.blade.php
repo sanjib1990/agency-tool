@@ -16,7 +16,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary dev_select">Save changes</button>
+                <button type="button" class="btn btn-primary dev_select"
+                        data-status="ASSIGNED_FOR_DEVELOPMENT">
+                    Save changes
+                </button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

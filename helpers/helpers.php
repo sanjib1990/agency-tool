@@ -122,3 +122,26 @@ if (! function_exists('convert_timezone')) {
         return carbon()->parse($dateTime, $inputTz)->setTimezone($outputTz);
     }
 }
+
+if (! function_exists('date_to_iso')) {
+    /**
+     * Method to convert date time from One TZ to other iso standard
+     *
+     * @param      $dateTime
+     * @param      $inputTz
+     * @param null $outputTz
+     * @return Carbon
+     */
+    function date_to_iso($dateTime, $inputTz = null, $outputTz = null)
+    {
+        if (empty($inputTz)) {
+            $inputTz    = config('app.timezone');
+        }
+
+        if (empty($outputTz)) {
+            $outputTz   = config('app.timezone');
+        }
+
+        return carbon()->parse($dateTime, $inputTz)->setTimezone($outputTz)->toIso8601String();
+    }
+}
